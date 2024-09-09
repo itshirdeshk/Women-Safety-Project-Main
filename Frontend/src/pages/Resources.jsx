@@ -4,17 +4,17 @@ const articles = [
   {
     title: "Safety Tips for Women",
     description: "Learn essential safety tips to protect yourself in various situations.",
-    link: "/articles/safety-tips",
+    link: "https://safetyfirst.blog/women-safety-tips/", // External link added here
   },
   {
     title: "Understanding Your Legal Rights",
     description: "A comprehensive guide to understanding your legal rights as a woman.",
-    link: "/articles/legal-rights",
+    link: "https://blog.ipleaders.in/eight-important-rights-every-indian-woman-know/#:~:text=Every%20woman%20has%20the%20right,intent%20to%20disrobe%20her%20(Sec",
   },
   {
     title: "Self-Defense Techniques",
     description: "Explore effective self-defense techniques that every woman should know.",
-    link: "/articles/self-defense",
+    link: "https://www.healthline.com/health/womens-health/self-defense-tips-escape#8-moves-to-try",
   },
 ];
 
@@ -22,7 +22,7 @@ const resources = [
   {
     title: "Mental Health Support",
     description: "Access resources for mental health support and coping strategies.",
-    link: "/resources/mental-health",
+    link: "https://www.nimh.nih.gov/health/topics/women-and-mental-health",
   },
   {
     title: "Local Support Groups",
@@ -53,7 +53,12 @@ const Resources = () => {
                   className="bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105 text-center"
                 >
                   <h3 className="text-xl font-bold mb-2">
-                    <a href={article.link} className="text-blue-600 hover:underline">
+                    <a
+                      href={article.link}
+                      className="text-blue-600 hover:underline"
+                      target="_blank" // This will open the link in a new tab
+                      rel="noopener noreferrer"
+                    >
                       {article.title}
                     </a>
                   </h3>
