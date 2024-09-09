@@ -1,10 +1,11 @@
 import React from "react";
+import { ExternalLink, BookOpen, LifeBuoy } from "lucide-react"; // Icons for enhancing UI
 
 const articles = [
   {
     title: "Safety Tips for Women",
     description: "Learn essential safety tips to protect yourself in various situations.",
-    link: "https://safetyfirst.blog/women-safety-tips/", // External link added here
+    link: "https://safetyfirst.blog/women-safety-tips/",
   },
   {
     title: "Understanding Your Legal Rights",
@@ -39,49 +40,64 @@ const resources = [
 const Resources = () => {
   return (
     <div className="container mx-auto p-6 flex flex-col items-center justify-center">
-      <div className="w-full max-w-4xl flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold text-white bg-blue-600 p-4 rounded mb-6 text-center w-full">
+      <div className="w-full max-w-5xl flex flex-col items-center justify-center bg-gray-100 p-6 rounded-lg shadow-xl">
+        <h1 className="text-4xl font-extrabold text-white bg-blue-600 p-4 rounded mb-6 text-center w-full shadow-md">
           Articles and Resources
         </h1>
-        <div className="w-full gap-6">
-          <div className="col-span-2">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Articles</h2>
-            <div className="grid grid-cols-1 gap-4">
-              {articles.map((article, index) => (
-                <div
-                  key={index}
-                  className="bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105 text-center"
-                >
-                  <h3 className="text-xl font-bold mb-2">
-                    <a
-                      href={article.link}
-                      className="text-blue-600 hover:underline"
-                      target="_blank" // This will open the link in a new tab
-                      rel="noopener noreferrer"
-                    >
-                      {article.title}
-                    </a>
-                  </h3>
-                  <p>{article.description}</p>
-                </div>
-              ))}
-            </div>
-            <h2 className="text-2xl font-semibold mt-8 mb-4 text-center">Resources</h2>
-            <div className="grid grid-cols-1 gap-4">
-              {resources.map((resource, index) => (
-                <div
-                  key={index}
-                  className="bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105 text-center"
-                >
-                  <h3 className="text-xl font-bold mb-2">
-                    <a href={resource.link} className="text-blue-600 hover:underline">
-                      {resource.title}
-                    </a>
-                  </h3>
-                  <p>{resource.description}</p>
-                </div>
-              ))}
-            </div>
+
+        {/* Articles Section */}
+        <div className="w-full mb-10">
+          <h2 className="text-3xl font-bold mb-6 text-center text-blue-700">
+            <BookOpen className="inline-block mr-2 text-blue-700" />
+            Articles
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map((article, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 text-center border-t-4 border-blue-500 hover:border-blue-700"
+              >
+                <h3 className="text-xl font-bold mb-4 text-blue-700">
+                  <a
+                    href={article.link}
+                    className="text-blue-600 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {article.title} <ExternalLink className="inline-block ml-2" size={16} />
+                  </a>
+                </h3>
+                <p className="text-gray-700">{article.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Resources Section */}
+        <div className="w-full">
+          <h2 className="text-3xl font-bold mb-6 text-center text-green-700">
+            <LifeBuoy className="inline-block mr-2 text-green-700" />
+            Resources
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {resources.map((resource, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 text-center border-t-4 border-green-500 hover:border-green-700"
+              >
+                <h3 className="text-xl font-bold mb-4 text-green-700">
+                  <a
+                    href={resource.link}
+                    className="text-green-600 hover:underline"
+                    target={resource.link.startsWith("/") ? "_self" : "_blank"}
+                    rel="noopener noreferrer"
+                  >
+                    {resource.title} <ExternalLink className="inline-block ml-2" size={16} />
+                  </a>
+                </h3>
+                <p className="text-gray-700">{resource.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
