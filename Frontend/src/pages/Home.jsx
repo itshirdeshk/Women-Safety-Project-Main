@@ -10,17 +10,7 @@ import {
 function Home() {
   return (
     <>
-      <div className="relative">
-        {/* Background Circles */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <div className="circle bg-blue-400 opacity-50 blur-md"></div>
-            <div className="circle bg-red-400 opacity-50 blur-md"></div>
-            <div className="circle bg-yellow-400 opacity-50 blur-md"></div>
-            <div className="circle bg-green-400 opacity-50 blur-md"></div>
-            <div className="circle bg-purple-400 opacity-50 blur-md"></div>
-          </div>
-        </div>
+      <div className="relative overflow-hidden">
 
         <div className="container mx-auto p-4">
           {/* Hero Section */}
@@ -133,75 +123,6 @@ function Home() {
           </div>
         </div>
       </div>
-
-      {/* Additional styles */}
-      <style>
-        {`
-          .animate-text {
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: textAnimation 4s infinite;
-          }
-
-          @keyframes textAnimation {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-          }
-
-          .animate-fade {
-            animation: fadeIn 3s ease-in-out;
-          }
-
-          @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-          }
-
-          /* Circle Styles */
-          .circle {
-            position: absolute;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            mix-blend-mode: screen;
-            pointer-events: none;
-          }
-
-          .circle:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            transform: translate(-50%, -50%);
-          }
-
-          .circle:nth-child(2) {
-            top: 30%;
-            right: 15%;
-            transform: translate(50%, -50%);
-          }
-
-          .circle:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            transform: translate(-50%, 50%);
-          }
-
-          .circle:nth-child(4) {
-            bottom: 30%;
-            right: 25%;
-            transform: translate(50%, 50%);
-          }
-
-          .circle:nth-child(5) {
-            top: 50%;
-            left: 70%;
-            transform: translate(-50%, -50%);
-          }
-        `}
-      </style>
     </>
   );
 }
