@@ -5,6 +5,20 @@ import { AiOutlineUser } from "react-icons/ai";
 const Signup = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Vertical lines */}
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-80"></div>
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gray-300 opacity-80"></div>
+
+        {/* Horizontal lines */}
+        <div className="absolute top-1/4 left-0 right-0 h-px bg-gray-300 opacity-80"></div>
+        <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-300 opacity-80"></div>
+
+        {/* Diagonal abstract shapes */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-20 transform rotate-45"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-20 transform -rotate-45"></div>
+      </div>
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-2xl">
         <div className="flex justify-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-indigo-500 to-blue-500">

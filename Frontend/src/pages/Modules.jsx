@@ -81,9 +81,23 @@ const VideoSection = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      
-      <h2 className="text-4xl font-bold text-center mb-10 bg-blue-600 text-white p-4 rounded">
+    <div className="relative min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-100 overflow-hidden">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Vertical lines */}
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-30"></div>
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gray-300 opacity-30"></div>
+
+        {/* Horizontal lines */}
+        <div className="absolute top-1/4 left-0 right-0 h-px bg-gray-300 opacity-30"></div>
+        <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-300 opacity-30"></div>
+
+        {/* Diagonal abstract shapes */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-10 transform rotate-45"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-10 transform -rotate-45"></div>
+      </div>
+
+      <h2 className="text-4xl font-bold text-center mb-10 bg-gradient-to-r from-blue-600 to-blue-400 text-white p-4 rounded-lg shadow-lg">
         Self-Defense and Learning Videos
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

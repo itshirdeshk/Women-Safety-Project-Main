@@ -11,8 +11,21 @@ function Home() {
   return (
     <>
       <div className="relative overflow-hidden">
-
         <div className="container mx-auto p-4">
+          {/* Background Decorations */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            {/* Vertical lines */}
+            <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-80"></div>
+            <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gray-300 opacity-80"></div>
+
+            {/* Horizontal lines */}
+            <div className="absolute top-1/4 left-0 right-0 h-px bg-gray-300 opacity-80"></div>
+            <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-300 opacity-80"></div>
+
+            {/* Diagonal abstract shapes */}
+            <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-20 transform rotate-45"></div>
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-20 transform -rotate-45"></div>
+          </div>
           {/* Hero Section */}
           <div
             className="relative bg-cover bg-center h-[60vh] w-full flex flex-col justify-center items-center text-center text-white p-6 mt-6 rounded-lg shadow-lg animate-bg-shift"
@@ -63,8 +76,8 @@ function Home() {
                     Emergency Assistance
                   </h3>
                   <p className="text-white">
-                    Quickly access emergency services and alert your contacts with
-                    a single tap.
+                    Quickly access emergency services and alert your contacts
+                    with a single tap.
                   </p>
                 </div>
               </div>

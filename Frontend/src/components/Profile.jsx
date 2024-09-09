@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineUser } from 'react-icons/ai';
+import React, { useEffect, useState } from "react";
+import { AiOutlineUser } from "react-icons/ai";
 import axios from "axios";
 
 const Profile = () => {
   const [userData, setUserData] = useState({
-    name: '',
-    age: '',
-    email: '',
-    mobile: '',
-    emergencyContacts: []
+    name: "",
+    age: "",
+    email: "",
+    mobile: "",
+    emergencyContacts: [],
   });
   const [isEditing, setIsEditing] = useState(false);
 
@@ -16,7 +16,7 @@ const Profile = () => {
     // Fetch user information from backend
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/me');
+        const response = await axios.get("http://localhost:3000/api/auth/me");
         const { data } = response.data;
 
         setUserData({
@@ -24,10 +24,10 @@ const Profile = () => {
           age: data.age,
           email: data.email,
           mobile: data.mobile,
-          emergencyContacts: data.emergencyContacts || []
+          emergencyContacts: data.emergencyContacts || [],
         });
       } catch (error) {
-        console.error('Error fetching user data', error);
+        console.error("Error fetching user data", error);
       }
     };
 
@@ -46,22 +46,37 @@ const Profile = () => {
 
   const saveProfile = async () => {
     try {
-      const response = await axios.put('http://localhost:3000/api/users/updateProfile', {
-        email: userData.email,
-        password: userData.age
-      })
+      const response = await axios.put(
+        "http://localhost:3000/api/users/updateProfile",
+        {
+          email: userData.email,
+          password: userData.age,
+        }
+      );
 
-      if(response.success){
+      if (response.success) {
         console.log("Profile Updated Successfully!");
       }
-    } catch (error) {
-      
-    }
+    } catch (error) {}
     setIsEditing(false);
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Vertical lines */}
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-80"></div>
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gray-300 opacity-80"></div>
+
+        {/* Horizontal lines */}
+        <div className="absolute top-1/4 left-0 right-0 h-px bg-gray-300 opacity-80"></div>
+        <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-300 opacity-80"></div>
+
+        {/* Diagonal abstract shapes */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-20 transform rotate-45"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-20 transform -rotate-45"></div>
+      </div>
       <div className="w-full max-w-sm p-4 space-y-4 bg-white rounded-lg shadow-lg">
         <div className="flex justify-center mb-2">
           <div className="w-20 h-20 rounded-full flex items-center justify-center">
@@ -75,28 +90,36 @@ const Profile = () => {
             <input
               type="text"
               value={userData.name}
-              onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+              onChange={(e) =>
+                setUserData({ ...userData, name: e.target.value })
+              }
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Name"
             />
             <input
               type="number"
               value={userData.age}
-              onChange={(e) => setUserData({ ...userData, age: e.target.value })}
+              onChange={(e) =>
+                setUserData({ ...userData, age: e.target.value })
+              }
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Age"
             />
             <input
               type="email"
               value={userData.email}
-              onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Email"
             />
             <input
               type="text"
               value={userData.mobile}
-              onChange={(e) => setUserData({ ...userData, mobile: e.target.value })}
+              onChange={(e) =>
+                setUserData({ ...userData, mobile: e.target.value })
+              }
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Mobile"
             />
@@ -107,7 +130,9 @@ const Profile = () => {
                   type="text"
                   placeholder={`Contact ${index + 1}`}
                   value={contact}
-                  onChange={(e) => handleEmergencyContactChange(index, e.target.value)}
+                  onChange={(e) =>
+                    handleEmergencyContactChange(index, e.target.value)
+                  }
                   className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                 />
                 <button
@@ -134,7 +159,9 @@ const Profile = () => {
             <p className="text-gray-600">Mobile: {userData.mobile}</p>
             <h3 className="text-lg font-semibold mt-2">Emergency Contacts</h3>
             {userData.emergencyContacts.map((contact, index) => (
-              <p key={index} className="text-gray-600">{contact}</p>
+              <p key={index} className="text-gray-600">
+                {contact}
+              </p>
             ))}
           </div>
         )}
@@ -144,7 +171,7 @@ const Profile = () => {
           onClick={toggleEdit}
           className="w-full py-1 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:ring-green-300 transition duration-300 mt-2"
         >
-          {isEditing ? 'Save Changes' : 'Edit Profile'}
+          {isEditing ? "Save Changes" : "Edit Profile"}
         </button>
       </div>
     </div>

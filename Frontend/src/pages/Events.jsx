@@ -20,12 +20,28 @@ const Events = () => {
   };
 
   return (
-    <div className="events-page text-center bg-gray-50 min-h-screen py-10">
-      <header className="bg-blue-600 text-white py-6">
+    <div className="relative min-h-screen bg-gray-50 py-10">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Vertical lines */}
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-60"></div>
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gray-300 opacity-60"></div>
+
+        {/* Horizontal lines */}
+        <div className="absolute top-1/4 left-0 right-0 h-px bg-gray-300 opacity-60"></div>
+        <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-300 opacity-60"></div>
+
+        {/* Diagonal abstract shapes */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-300 to-indigo-400 opacity-20 transform rotate-45"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-purple-300 to-indigo-400 opacity-20 transform -rotate-45"></div>
+      </div>
+
+      {/* Main Content */}
+      <header className="bg-blue-600 text-white py-6 z-10 relative">
         <h1 className="text-4xl font-bold">Events and Workshops</h1>
       </header>
 
-      <main className="p-8">
+      <main className="relative z-10 p-8">
         {/* Filter Buttons */}
         <div className="filter-buttons mb-8 flex justify-center space-x-4">
           {['all', 'webinar', 'local'].map((type) => (
