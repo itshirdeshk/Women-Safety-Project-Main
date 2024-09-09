@@ -14,6 +14,6 @@ router.post(
         body('message').optional().isString()
     ]),
     sendSOS
-);
+); 
 
 module.exports = router;

@@ -14,7 +14,7 @@ module.exports = {
     },
     email: {
         service: 'gmail', // Example with Gmail
-        user: 'your-email@gmail.com',
-        pass: 'your-email-password'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     },
 };

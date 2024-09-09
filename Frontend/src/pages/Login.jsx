@@ -1,21 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
+import axios from 'axios';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Clear error message
+    setErrorMessage('');
+    setLoading(true);
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+
+      if (response.data.success) {
+        // Redirect to the dashboard or desired page after login
+        navigate('/');
+      }
+    } catch (error) {
+      setErrorMessage('Invalid email or password. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-lg">
         <div className="flex justify-center mb-6">
-        <div className="w-16 h-16  rounded-full flex items-center justify-center">
-          <AiOutlineUser className="w-16 h-16 rounded-full border-2 border-gray-300 bg-slate-50" />
+          <div className="w-16 h-16 rounded-full flex items-center justify-center">
+            <AiOutlineUser className="w-16 h-16 rounded-full border-2 border-gray-300 bg-slate-50" />
           </div>
         </div>
         <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Welcome Back</h1>
-        <form>
+        
+        {errorMessage && (
+          <div className="mb-4 text-red-500 text-center">{errorMessage}</div>
+        )}
+
+        <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="w-full px-4 py-3 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
               required
@@ -24,6 +59,8 @@ const Login = () => {
           <div className="mb-8">
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               className="w-full px-4 py-3 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
               required
@@ -32,12 +69,14 @@ const Login = () => {
           <button
             type="submit"
             className="w-full py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 transition duration-300"
+            disabled={loading}
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
+
         <p className="mt-8 text-center text-sm text-gray-600">
-          New here?
+          New here? 
           <Link to="/signup" className="text-blue-500">
             Sign up
           </Link>
@@ -48,7 +87,6 @@ const Login = () => {
 };
 
 export default Login;
-
 
 
 // import React, { useState } from 'react';

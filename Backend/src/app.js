@@ -44,10 +44,10 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/sos', sosRoutes);
-app.use('/api/discussions', discussionRoutes);
-app.use('/api/articles', articleRoutes);
-app.use('/api/events', eventRoutes);
-app.use('/api/stories', storyRoutes);
+// app.use('/api/discussions', discussionRoutes);
+// app.use('/api/articles', articleRoutes);
+// app.use('/api/events', eventRoutes);
+// app.use('/api/stories', storyRoutes);
 
 // Error Handler
 app.use(errorHandler);

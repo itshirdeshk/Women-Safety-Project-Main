@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const nodemailer = require('nodemailer');
 const config = require('../config');
 const User = require('../models/User');
-const Sos = require('../models/Sos');
+const Sos = require('../models/SOSAlert.js');
 
 // Initialize Nodemailer
 const transporter = nodemailer.createTransport({
@@ -31,7 +31,7 @@ exports.sendSOS = asyncHandler(async (req, res) => {
 
     const mailOptions = {
         from: config.email.user,
-        to: 'random-police-email@example.com', // Replace with actual police email
+        to: 'pradhunyagawande@gmail.com', // Replace with actual police email
         subject: 'SOS Alert',
         html: emailContent
     };
@@ -50,16 +50,16 @@ exports.sendSOS = asyncHandler(async (req, res) => {
             }
 
             // Also send SMS to emergency contacts
-            const sendSMSPromises = user.emergencyContacts.map(contact =>
-                transporter.sendMail({
-                    ...mailOptions,
-                    to: contact,
-                    subject: 'SOS Alert - Emergency Contact',
-                    text: `SOS Alert! ${defaultMessage} Location: ${location}`
-                })
-            );
+            // const sendSMSPromises = user.emergencyContacts.map(contact =>
+            //     transporter.sendMail({
+            //         ...mailOptions,
+            //         to: contact,
+            //         subject: 'SOS Alert - Emergency Contact',
+            //         text: `SOS Alert! ${defaultMessage} Location: ${location}`
+            //     })
+            // );
 
-            await Promise.all(sendSMSPromises);
+            // await Promise.all(sendSMSPromises);
 
             // Save SOS alert to database
             await Sos.create({
