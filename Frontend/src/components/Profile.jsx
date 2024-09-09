@@ -1,33 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
+import axios from "axios";
 
 const Profile = () => {
-  const [name, setName] = useState('John Doe'); 
-  const [age, setAge] = useState(30); 
-  const [email, setEmail] = useState('john.doe@example.com'); 
-  const [mobile, setMobile] = useState('123-456-7890'); 
-  const [emergencyContacts, setEmergencyContacts] = useState(['', '', '', '', '']); 
-  const [isEditing, setIsEditing] = useState(false); 
+  const [userData, setUserData] = useState({
+    name: '',
+    age: '',
+    email: '',
+    mobile: '',
+    emergencyContacts: []
+  });
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    // Fetch user information from backend
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/auth/me');
+        const { data } = response.data;
+
+        setUserData({
+          name: data.name,
+          age: data.age,
+          email: data.email,
+          mobile: data.mobile,
+          emergencyContacts: data.emergencyContacts || []
+        });
+      } catch (error) {
+        console.error('Error fetching user data', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleEmergencyContactChange = (index, value) => {
-    const updatedContacts = [...emergencyContacts];
+    const updatedContacts = [...userData.emergencyContacts];
     updatedContacts[index] = value;
-    setEmergencyContacts(updatedContacts);
-  };
-
-  const addEmergencyContact = () => {
-    if (emergencyContacts.length < 5) {
-      setEmergencyContacts([...emergencyContacts, '']);
-    }
-  };
-
-  const removeEmergencyContact = (index) => {
-    const updatedContacts = emergencyContacts.filter((_, i) => i !== index);
-    setEmergencyContacts(updatedContacts);
+    setUserData({ ...userData, emergencyContacts: updatedContacts });
   };
 
   const toggleEdit = () => {
     setIsEditing(!isEditing);
+  };
+
+  const saveProfile = async () => {
+    try {
+      const response = await axios.put('http://localhost:3000/api/users/updateProfile', {
+        email: userData.email,
+        password: userData.age
+      })
+
+      if(response.success){
+        console.log("Profile Updated Successfully!");
+      }
+    } catch (error) {
+      
+    }
+    setIsEditing(false);
   };
 
   return (
@@ -39,39 +69,39 @@ const Profile = () => {
           </div>
         </div>
         <h2 className="text-xl font-bold text-center text-gray-800">{name}</h2>
-        
+
         {isEditing ? (
           <div className="space-y-2">
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={userData.name}
+              onChange={(e) => setUserData({ ...userData, name: e.target.value })}
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Name"
             />
             <input
               type="number"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
+              value={userData.age}
+              onChange={(e) => setUserData({ ...userData, age: e.target.value })}
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Age"
             />
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userData.email}
+              onChange={(e) => setUserData({ ...userData, email: e.target.value })}
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Email"
             />
             <input
               type="text"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
+              value={userData.mobile}
+              onChange={(e) => setUserData({ ...userData, mobile: e.target.value })}
               className="w-full px-3 py-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
               placeholder="Mobile"
             />
             <h3 className="text-lg font-semibold mt-2">Emergency Contacts</h3>
-            {emergencyContacts.map((contact, index) => (
+            {userData.emergencyContacts.map((contact, index) => (
               <div key={index} className="flex items-center space-x-2 mb-1">
                 <input
                   type="text"
@@ -99,11 +129,11 @@ const Profile = () => {
           </div>
         ) : (
           <div className="text-center">
-            <p className="text-gray-600">Age: {age}</p>
-            <p className="text-gray-600">Email: {email}</p>
-            <p className="text-gray-600">Mobile: {mobile}</p>
+            <p className="text-gray-600">Age: {userData.age}</p>
+            <p className="text-gray-600">Email: {userData.email}</p>
+            <p className="text-gray-600">Mobile: {userData.mobile}</p>
             <h3 className="text-lg font-semibold mt-2">Emergency Contacts</h3>
-            {emergencyContacts.map((contact, index) => (
+            {userData.emergencyContacts.map((contact, index) => (
               <p key={index} className="text-gray-600">{contact}</p>
             ))}
           </div>
