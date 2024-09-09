@@ -10,7 +10,7 @@ const Stories = () => {
       author: 'Jane Doe', 
       likes: 120, 
       comments: 15,
-      isPlaying: false 
+      isPlaying: true // We can remove this property now
     },
     { 
       id: 2, 
@@ -20,7 +20,7 @@ const Stories = () => {
       author: 'Alice Smith', 
       likes: 98, 
       comments: 22,
-      isPlaying: false 
+      isPlaying: true
     },
     { 
       id: 3, 
@@ -30,9 +30,8 @@ const Stories = () => {
       author: 'Emily Brown', 
       likes: 75, 
       comments: 8,
-      isPlaying: false 
+      isPlaying: true
     },
-
   ]);
 
   const [newStory, setNewStory] = useState({ title: '', content: '', type: 'text' });
@@ -42,12 +41,6 @@ const Stories = () => {
     const newId = stories.length + 1;
     setStories([...stories, { ...newStory, id: newId, author: 'Anonymous', likes: 0, comments: 0 }]);
     setNewStory({ title: '', content: '', type: 'text' });
-  };
-
-  const handlePlayVideo = (id) => {
-    setStories(stories.map(story => 
-      story.id === id ? { ...story, isPlaying: !story.isPlaying } : story
-    ));
   };
 
   return (
@@ -65,9 +58,8 @@ const Stories = () => {
               <div 
                 key={story.id} 
                 className="story-card bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
-                onClick={() => story.type === 'video' && handlePlayVideo(story.id)} 
               >
-                {story.isPlaying && story.type === 'video' ? (
+                {story.type === 'video' && (
                   <iframe 
                     width="100%" 
                     height="180" 
@@ -77,10 +69,6 @@ const Stories = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen 
                   />
-                ) : (
-                  <div className="h-40 bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-500">Click to play video</span>
-                  </div>
                 )}
                 <div className="p-4">
                   <h3 className="font-semibold">{story.title}</h3>
