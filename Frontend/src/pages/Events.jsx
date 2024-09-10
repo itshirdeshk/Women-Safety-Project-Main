@@ -7,14 +7,13 @@ const Events = () => {
   ]);
 
   const [filter, setFilter] = useState('all');
+  const [newEvent, setNewEvent] = useState({ title: '', type: 'webinar', date: '', time: '', description: '' });
 
   const filteredEvents = filter === 'all' ? events : events.filter(event => event.type === filter);
 
-  const [newEvent, setNewEvent] = useState({ title: '', type: 'webinar', date: '', time: '', description: '' });
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newId = events.length + 1;
+    const newId = events.length ? Math.max(events.map(event => event.id)) + 1 : 1;
     setEvents([...events, { ...newEvent, id: newId }]);
     setNewEvent({ title: '', type: 'webinar', date: '', time: '', description: '' });
   };
@@ -25,11 +24,11 @@ const Events = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Vertical lines */}
         <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-60"></div>
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gray-300 opacity-60"></div>
+        <div className="absolute right-1/4 top-0 bottom-0 w-px bg-gray-300 opacity-60"></div>
 
         {/* Horizontal lines */}
         <div className="absolute top-1/4 left-0 right-0 h-px bg-gray-300 opacity-60"></div>
-        <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-300 opacity-60"></div>
+        <div className="absolute bottom-1/4 left-0 right-0 h-px bg-gray-300 opacity-60"></div>
 
         {/* Diagonal abstract shapes */}
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-300 to-indigo-400 opacity-20 transform rotate-45"></div>
@@ -38,13 +37,13 @@ const Events = () => {
 
       {/* Main Content */}
       <header className="bg-blue-600 text-white py-6 z-10 relative">
-        <h1 className="text-4xl font-bold">Events and Workshops</h1>
+        <h1 className="text-4xl font-bold text-center">Events and Workshops</h1>
       </header>
 
       <main className="relative z-10 p-8">
         {/* Filter Buttons */}
-        <div className="filter-buttons mb-8 flex justify-center space-x-4">
-          {['all', 'webinar', 'local'].map((type) => (
+        <div className="mb-8 flex justify-center space-x-4">
+          {['all', 'webinar', 'local', 'qa'].map((type) => (
             <button
               key={type}
               onClick={() => setFilter(type)}
@@ -58,10 +57,10 @@ const Events = () => {
         </div>
 
         {/* Events Grid */}
-        <div className="events-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEvents.length ? (
             filteredEvents.map((event) => (
-              <div key={event.id} className="event-card bg-white shadow-lg rounded-lg overflow-hidden transition transform hover:scale-105">
+              <div key={event.id} className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
                   <p className="text-sm text-gray-600 mb-1">
@@ -81,13 +80,13 @@ const Events = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500">No events available for this category.</p>
+            <p className="text-gray-500 text-center">No events available for this category.</p>
           )}
         </div>
 
         {/* New Event Form */}
-        <div className="new-event-form mt-16 max-w-md mx-auto">
-          <h3 className="text-2xl font-bold mb-6">Suggest a New Event</h3>
+        <div className="mt-16 max-w-md mx-auto">
+          <h3 className="text-2xl font-bold mb-6 text-center">Suggest a New Event</h3>
           <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-md">
             <input
               type="text"
