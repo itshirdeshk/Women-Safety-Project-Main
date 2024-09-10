@@ -32,7 +32,7 @@ const Chatbot = () => {
     setInput("");
 
     const therapyPrompt = `
-      You are a therapist chatbot designed specifically to support women dealing with stress, anxiety, or other emotional challenges. Please respond with empathy, care, and helpful suggestions. 
+      You are a therapist chatbot designed specifically to support women dealing with stress, anxiety, or other emotional challenges. Please respond with empathy, care, and helpful suggestions. Don't give any other answers other than this topic. If any anyone asks question other than this topic reply with I am not compatible for this.
     `;
 
     const conversationHistory = formatConversationHistory();

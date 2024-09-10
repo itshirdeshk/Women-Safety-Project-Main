@@ -4,11 +4,11 @@ import axios from "axios";
 
 const Profile = () => {
   const [userData, setUserData] = useState({
-    name: "",
-    age: "",
-    email: "",
-    mobile: "",
-    emergencyContacts: [],
+    name: "Hirdesh",
+    age: "20",
+    email: "hirdeshkhandelwal58@gmail.com",
+    mobile: "7252995449",
+    emergencyContacts: ["7252995449", "7252995449"],
   });
   const [isEditing, setIsEditing] = useState(false);
 

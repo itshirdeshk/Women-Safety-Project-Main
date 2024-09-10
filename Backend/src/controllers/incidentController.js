@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 const Incident = require('../models/Incident');
-const { sendToBlockchain } = require('../utils/blockchainUtils');
 
 // @desc    Report a new incident
 // @route   POST /api/incidents
@@ -25,12 +24,12 @@ exports.reportIncident = asyncHandler(async (req, res) => {
 
         const savedIncident = await newIncident.save();
 
-        // 2. Send the incident data to the blockchain
-        const blockchainHash = await sendToBlockchain(savedIncident);
+        // // 2. Send the incident data to the blockchain
+        // const blockchainHash = await sendToBlockchain(savedIncident);
 
-        // 3. Update the incident with the blockchain transaction hash
-        savedIncident.blockchainHash = blockchainHash;
-        await savedIncident.save();
+        // // 3. Update the incident with the blockchain transaction hash
+        // savedIncident.blockchainHash = blockchainHash;
+        // await savedIncident.save();
 
         // Respond with the stored incident details
         res.status(201).json({
