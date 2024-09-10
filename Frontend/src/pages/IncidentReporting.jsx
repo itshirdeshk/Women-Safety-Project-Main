@@ -48,15 +48,21 @@ const IncidentReporting = () => {
             />
           </div>
 
-          {/* Date Input */}
+          {/* Date and Time Input */}
           <div className="mb-5">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Date of Incident
+              Date and Time of Incident
             </label>
-            <input
-              type="date"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-150 ease-in-out"
-            />
+            <div className="flex space-x-4">
+              <input
+                type="date"
+                className="mt-1 block w-1/2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-150 ease-in-out"
+              />
+              <input
+                type="time"
+                className="mt-1 block w-1/2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-150 ease-in-out"
+              />
+            </div>
           </div>
 
           {/* Description Input */}
