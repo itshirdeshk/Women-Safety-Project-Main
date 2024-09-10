@@ -71,19 +71,6 @@ const IncidentReporting = () => {
             />
           </div>
 
-          {/* File Upload/Camera Section */}
-          <div className="mb-5">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Upload Evidence (Image/Video)
-            </label>
-            <input
-              type="file"
-              accept="image/*,video/*"
-              capture="user"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-150 ease-in-out"
-            />
-          </div>
-
           {/* Submit Button */}
           <button
             type="submit"
