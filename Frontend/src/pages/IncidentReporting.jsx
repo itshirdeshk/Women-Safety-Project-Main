@@ -119,7 +119,6 @@ const IncidentReporting = () => {
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Date and Time of Incident
             </label>
-<<<<<<< HEAD
             <input
               type="date"
               name="date"
@@ -127,7 +126,6 @@ const IncidentReporting = () => {
               onChange={handleChange}
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-150 ease-in-out"
             />
-=======
             <div className="flex space-x-4">
               <input
                 type="date"
@@ -138,7 +136,6 @@ const IncidentReporting = () => {
                 className="mt-1 block w-1/2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-150 ease-in-out"
               />
             </div>
->>>>>>> dec271b18d429eab50ebda76c372c6dd6bba01a9
           </div>
 
           {/* Description Input */}
